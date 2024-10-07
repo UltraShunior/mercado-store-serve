@@ -3,21 +3,19 @@ const axios = require('axios');
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const { Pool } = require('pg');
+const { PrismaClient } = require('@prisma/client');
 
 const app = express();
 const port = process.env.PORT || 3000;
 
-const pool = new Pool({
-  user: process.env.DB_USER,
-  host: process.env.DB_HOST,
-  database: process.env.DB_NAME,
-  password: process.env.DB_PASSWORD,
-  port: process.env.DB_PORT,
-});
-
 app.use(cors());
-app.use(bodyParser.json());
+app.use(express.json());
+
+const prisma = new PrismaClient();
+
+app.get('/', (req, res) => {
+  res.send('Bienvenido a la API de Mercado Shops');
+});
 
 // Rutas de la API (se detallarán más adelante)
 app.get('/auth/mercado-shops', (req, res) => {
