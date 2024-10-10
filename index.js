@@ -87,7 +87,7 @@ app.get('/auth/callback', async (req, res) => {
     
   
     try {
-      const response = await axios.get(`https://api.mercadoshops.com/v1/sites/${userId}/items/search`, {
+      const response = await axios.get(`https://api.mercadoshops.com/v1/sites/${siteId}/items/search`, { //TODO: Cambiar por el site_id del usuario
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
